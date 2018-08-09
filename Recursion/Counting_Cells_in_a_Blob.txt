@@ -1,0 +1,18 @@
+1. 입력으로 Binary 이미지가 주어진다.
+2. 8 x 8 block이미지에 해당하며, 각 픽셀은 background pixel / image pixel에 해당
+3. 서로 연결된 image pixel들의 집합을 blob라고 부른다.
+4. 상하좌우 및 대각방향으로도 연결된 것으로 간주
+(Counting_Cells_in_a_Blob.PNG참고)
+
+입력으로 2차원 그리드와 1개의 좌표 => 출력은 해당 blob의 크기
+
+
+-현재 픽셀이 속한 blob의 크기를 카운트하려면
+1) 현재 픽셀이 image color가 아니라면
+    0을 반환한다.
+2) 현재 픽셀이 image color라면
+    먼저 현재 필셀을 카운트 한다.(count = 1)
+    현재 픽셀이 중복 카운트되는 것을 방지하기 위해 다른 색으로 칠한다.
+    현재 픽셀에 이웃한 모든 픽셀들에 대해서
+        그 픽셀이 속한 blob의 크기를 카운트하여 count에 더해준다.
+    count를 반환한다.

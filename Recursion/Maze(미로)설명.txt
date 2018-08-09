@@ -1,0 +1,21 @@
+현재 위치에서 출구까지 가는 경로가 있으려면
+    1) 현재 위치가 출구이거나 혹은
+    2) 이웃한 셀들 중 하나에서 현재 위치를 지나지 않고 출구까지 가는 경로가 있거나
+
+-미로찾기(Decision Problem)-
+boolean findPath(x, y)
+    if (x, y) is the exit
+        return true;
+    else
+        for each neighbouring cell (x1, y1) of (x, y) do //현재 경로에서 이웃하는 cell이 x1, y1
+            if (x1, y1) is on the pathway //만약 x1, y1인 cell에 경로가 있다면
+                if findPath(x1, y1)
+                    return true;
+        return false;
+-----------------------------항상 무한 루프에 빠지지는 않는가..? 고려할것.------
+
+-위의 예시의 경우 두 cell을 무한히 이동할 수 있다.
+    else
+        mark (x, y) as a visited cell;
+    ->else부분 밑에 위의 코드를 추가. cell을 방문했다고 기록
+    ->if (x1, y1) is on the pathway => if (x1, y1) is on the pathway and not visited 수정
