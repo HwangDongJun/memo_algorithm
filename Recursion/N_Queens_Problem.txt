@@ -1,0 +1,55 @@
+체스에서 queen의 말들을 놓을때, 가로,세로,대각선에 있어서 어떠한 말과도 겹치지 않게 놓는 방법
+
+4x4인 체스판을 생각해보자. 말을 4개를 놓는다고 가정하자.
+행마다 겹치는 말이 없어야 하므로, 실질적으로는 4개의 행에 4개의 말이 1개씩만 들어가야 한다는 것!
+처음부터 계속해서 해보는 수밖에 없다.
+
+트리로 설명을 하자면, 각 좌표마다 가능한 위치로 상태공간 트리를 만든다.
+깊이 우선 탐색하여 해를 찾는 알고리즘이다.(되추적기법(Backtracking)이라고 한다.)
+
+-Design Recursion
+return-type queens(arguments) { //arguments로 시작 자체가 어떠한 노드에 도착했다고 생각을 한다.
+    if non-promising //실패
+        report failure and return;
+    else if success
+        report answer and return;
+    else
+        visit children recursively; //재귀적으로 트리의 자식들을 방문
+}
+
+arguments에 어떠한 방식으로 노드의 위치를 전달해야하나.
+전역변수 int [] cols = new int [N+1];을 선언한 후, arguments는 int level
+level의 경우 트리의 깊이에 해당한다. col[level]은 행을 나타내며 그 값은 어떠한 열에 위치한 지를 나타내기 때문에 굳이 2차원 배열은 필요가 없다.
+return type은 boolean으로 지정한다.(기본적인 형태)
+non-promising => (!promising(level))
+success => (level == N)
+- success했을 경우 return true; 뿐만 아니라
+for (int i = 1; i <= N; i++)
+    System.out.println("(" + i + ", " + cols[i] + ")");
+현재 말의 위치를 전부 출력하여 준다.
+
+else
+       visit children recursively;
+=> for (int i = 1; i <= N; i++) {
+        cols[level+1] = i; //다음 깊이를 탐색해보는 것이다.
+        if (queens(level+1))
+            return true; //한개라도 성공을 하는 순간 true하고 끝.
+    }
+    return false;
+
+------------------Promising 방법---------
+기본적으로 가장 먼저 promising으로 검사를 하기 때문에 현재 col[level]에 들어있는 값 이전의 값들은 충돌이 없음이 보장되어 있다.
+그러므로 해당 level에 존재하는 값만 다른 말들과 충돌이 있는지 확인하면 된다.
+boolean promising(int level) {
+    for (int i = 1; i < level; i++) {
+        if (cols[i] == cols[level]) //같은 열에 존재하는지 검사
+            return false;
+        else if on the same diagonal //동일한 대각선에 놓여 있는지 검사
+            return false;
+    }
+    return true;
+}
+
+동일한 대각선에 놓여 있는지 확인은 어떻게 할까?
+>> if (level-i == Math.abs(cols[level]-cols[i]) 이다.
+동일한 대각선이라는 개념 자체가 해당하는 2개의 좌표의 행의 빼기 값 == 열의 빼기 값 인 것이다.
