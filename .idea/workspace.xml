@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b20510f-dfd2-405d-aa8e-609fb22fcda2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Updated(정렬)/Merge_Sort.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Updated(정렬)/mergesort시간복잡도.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Updated(정렬)/합병정렬(merge sort).txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dynamic_Programming/Dynamic_Programming1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -16,12 +14,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="합병정렬(merge sort).txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Updated(정렬)/합병정렬(merge sort).txt">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Dynamic_Programming1.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Dynamic_Programming/Dynamic_Programming1.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="54" column="22" lean-forward="true" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
+            <state relative-caret-position="362">
+              <caret line="71" column="1" lean-forward="true" selection-start-line="71" selection-start-column="1" selection-end-line="71" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -43,6 +41,7 @@
         <option value="$PROJECT_DIR$/Recursion/N_Queens_Problem.txt" />
         <option value="$PROJECT_DIR$/Updated(정렬)/기본적인 정렬 알고리즘.txt" />
         <option value="$PROJECT_DIR$/Updated(정렬)/합병정렬(merge sort).txt" />
+        <option value="$PROJECT_DIR$/Dynamic_Programming/Dynamic_Programming1.txt" />
       </list>
     </option>
   </component>
@@ -65,6 +64,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -76,14 +76,13 @@
             <path>
               <item name="memo_algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="memo_algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="Updated(정렬)" type="462c0819:PsiDirectoryNode" />
+              <item name="Dynamic_Programming" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -171,15 +170,17 @@
       <updated>1533818782728</updated>
       <workItem from="1533818787478" duration="3832000" />
       <workItem from="1533883713043" duration="4685000" />
-      <workItem from="1533991284131" duration="2716000" />
+      <workItem from="1533991284131" duration="2764000" />
+      <workItem from="1534084333055" duration="3376000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11233000" />
+    <option name="totallyTimeSpent" value="14657000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="676" y="0" width="697" height="735" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="5" />
       <window_info anchor="bottom" id="TODO" order="10" />
@@ -191,10 +192,10 @@
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="6" />
       <window_info anchor="bottom" id="Version Control" order="0" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="2" visible="true" weight="0.2831424" />
+      <window_info anchor="bottom" id="Terminal" order="2" visible="true" weight="0.28737542" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.09152799" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.24018839" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
@@ -217,6 +218,13 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Updated(정렬)/합병정렬(merge sort).txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1026">
+          <caret line="54" column="22" lean-forward="true" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -276,8 +284,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Updated(정렬)/합병정렬(merge sort).txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="54" column="22" lean-forward="true" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
+        <state relative-caret-position="296">
+          <caret line="54" column="22" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dynamic_Programming/Dynamic_Programming1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="71" column="1" lean-forward="true" selection-start-line="71" selection-start-column="1" selection-end-line="71" selection-end-column="1" />
         </state>
       </provider>
     </entry>

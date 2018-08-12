@@ -1,0 +1,78 @@
+★Fibonacci Numbers
+ex) 1 1 2 3 5 8 13 ...
+
+-> Recursion방식
+int fib(int n) {
+    if (n == 1 || n == 2)
+        return 1;
+    else
+        return fib(n-2) + fib(n-1);
+}
+==> 굉장히 많은 계산이 중복이 된다는 것을 알 수 있다.
+
+->Memoization방식
+int fib(int n) {
+    if(n == 1 || n == 2)
+        return 1;
+    else if(f[n] > -1) /*배열 f가 -1으로 초기화되어 있다고 가정*/
+        return f[n];   /*즉, 이미 계산된 값이라는 의미*/
+    else {
+        f[n] = fib(n-2) + fib(n-1);
+        return f[n];
+    }
+}
+==> 중간 계산 결과를 caching 함으로써 중복 계싼을 피함
+f배열 [1, 1, 2, 3, 5, 8, 13, 21, 34] (n이 10일경우)
+
+->bottom-up방식(아래서 위로 쭉 올라가는 방식)
+int fib(int n) {
+    f[1] = f[2] = 1
+    for(int i = 3; i <= n; i++)
+        f[n] = f[n-1] + f[n-2];
+    return f[n];
+}
+==> f라는 배열에 값을 저장을 해두고 더하는 방식으로 중복 계산을 피함
+
+★이항 계수(Binomial Coefficient)
+->nCk로써 n개 중에서 k개를 선택하는 경우의 수
+
+->Recursion방식
+int binomial(int n, int k) {
+    if(n == k || k == 0)
+        return 1;
+    else
+        return binomial(n-1, k) + binomial(n-1, k-1);
+}
+==> 역시 많은 계산이 중복이 된다.
+
+->Memoization방식
+int binomial(int n, int k) {
+    if(n == k || k == 0)
+        return 1;
+    else if(binom[n][k] > -1) /*배열 binom이 -1로 초기화되어 있다고 가정*/
+        return binom[n][k];
+    else {
+        binom[n][k] = binom(n-1, k) + binom(n-1, k-1);
+        return binom[n][k];
+    }
+}
+
+->bottom-up방식 (기본적인 값 -> 원하는 값까지)
+int binomial(int n, int k) {
+    for(int i = 0; i <= n; i++) {
+        for(int j = 0; j <= k && j <= i; j++) { //j <= i가 있는 이유는 n이 k보다 큰 경우는 생각할 필요가 없기 때문이다.
+                                                //j <= k는 k까지의 값만 구하면 되기에 k 이후의 값은 계산할 필요가 없다.
+            if(k == 0 || n == k)
+                binom[i][j] = 1;
+            else
+                binom[i][j] = binom[i-1][j-1] + binom[i-1][j];
+        }
+    }
+    return binom[n][k];
+}
+
+※Memoization vs. Dynamic Programming
+1. 순환식의 값을 계산하는 기법들이다.
+2. 둘 다 동적계획법의 일종으로 보기도 한다.
+3. Memoization은 top-down방식이며, 실제로 필요한 subproblem만을 푼다.
+4. 동적계획법은 bottom-up방식이며, recursion에 수반되는 overhead가 없다.
