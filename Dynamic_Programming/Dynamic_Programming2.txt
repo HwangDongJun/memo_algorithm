@@ -1,0 +1,59 @@
+*행렬 경로 문제
+1. 정수들이 저장된 n x n 행렬의 좌상단에서 우하단까지 이동한다. 단 오른쪽이나 아래쪽 방향으로만 이동할 수 있다.
+2. 방문한 칸에 있는 정수들의 합이 최소화되도록 하라.
+
+(i, j)에 도달하기 위해서는 (i, j-1) 혹은 (i-1, j)를 거쳐야 한다. 또한 (i, j-1) 혹은 (i-1, j)까지는 최선의 방법으로 이동해야 한다.
+L[i, j] -> m_ij  (if i=1 and j=1) //i, j위치의 값
+        -> L[i-1, j] + m_ij (if j=1) //j가 1이면 왼쪽값이 없는 지점이므로 자기 위에서 오는 방법뿐이다.
+        -> L[i, j-1] + m_ij (if i=1) //i가 1이면 위로 오는 값이 없고, 왼쪽으로 오는 방법뿐이다.
+        -> min(L[i-1, j], L[i, j-1]) + m_ij (otherwise)
+
+->Recursion방식 (단순하게 반복한다. 중복 계산이 존재 -> 매우 비 효율적)
+int mat(int i, int j) {
+    if(i == 1 && j == 1)
+        return m[i][j];
+    else if(i == 1)
+        return mat(1, j-1) + m[i][j];
+    else if(j == 1)
+        return mat(i-1, 1) + m[i][j];
+    else
+        return Math.min(mat(i-1, j), mat(i, j-1)) + m[i][j];
+}
+
+->Memoization방식
+int mat(int i, int j) {
+    if(L[i][j] != -1) return L[i][j];
+    if(i == 1 && j == 1)
+        L[i][j] = m[i][j];
+    else if(i == 1)
+        L[i][j] = mat(1, j-1) + m[i][j];
+    else if(j == 1)
+        L[i][j] = mat(i-1, 1) + m[i][j];
+    else
+        L[i][j] = Math.min(mat(i-1, j), mat(i, j-1)) + m[i][j];
+    return L[i][j];
+}
+
+->bottom-up방식
+항상 이전의 값들이 미리 계산이 되어있으면 된다. ex) L[i][j]보다 L[I-1][j]나 L[i][j-1]이 먼저 계산이 되어있으면 된다.
+계산을 하는 순서가 중요하게 된다. n x n 행렬에서 좌측상단부터 행 우선으로 계산을 하게 된다면 미리 계산이 되어진다.
+int mat() {
+    for(int i = 1; i <= n; i++) {
+        for(int j = 1; j <= n; j++) {
+            if(i == 1 && j == 1)
+                L[i][j] = m[i][j];
+            else if(i == 1)
+                L[i][j] = mat(1, j-1) + m[i][j];
+            else if(j == 1)
+                L[i][j] = mat(i-1, 1) + m[i][j];
+            else
+                L[i][j] = Math.min(mat(i-1, j), mat(i, j-1)) + m[i][j];
+        }
+    }
+    return L[n][n];
+}
+해당하는 코드는 for문이 2개이므로, 시간복잡도가 O(n의 제곱)이다.
+
+여기서 이동한 경로를 구하는 방법은 새로운 n x n 행렬을 만들어서 기록을 해두면 된다.
+새롭게 무언가를 할 필요는 없다.
+행렬에 경로를 표시할때 1, 2, 3...과 같은 숫자도 좋지만 '←', '↑'등으로 넣어두어도 편하다.
