@@ -1,0 +1,45 @@
+Longest Common Subsequence(LCS)문제
+
+1. <bcdb>는 문자열 <abcbdab>의 subsequence이다.
+2. <bca>는 문자열 <abcbdab>와 <bdcaba>의 common subsequence이다.
+3. Longest common subsequence(LCS)
+    - common subsequence들 중 가장 긴 것
+    - <bcba>는 <abcbdab>와 <bdcaba>의 LCS이다.
+
+Optimal Substructure
+주어진 문자열 x와 y의 뒷부분부터 비교를 하여 줄여나가면 된다.
+
+*순환식
+X -> x_1 ~ x_i
+Y -> y_1 ~ y_j
+
+(LCS의 길이 문자열 : L[i, j]라 하자.)
+경우1 : x_i == y_j
+L[i,j] = L[i-1, j-1] + 1 이다. (1은 x_i == y_j인 지점이다.)
+
+경우2 : x_i != y_j (둘 중 하나는 버려야 한다.)
+L[i,j] = max(L[i-1, j], L[i, j-1]) (두개중에 한개씩 버려보고 나서 더 긴 것이 LCS이다.)
+
+L[i,j] -> 0 (if i = 0 or j = 0)
+       -> L[i-1, j-1] + 1 (if x_i = y_j)
+       -> max(L[i-1, j], L[i, j-1]) (if x_i != y_j)
+ex) LCS.PNG참고  (그림에서 table의 어떠한 값을 계산하기 위해서는 i-1,j-1지점, i-1,j지점, i,j-1지점은 계산이 되어있어야 한다.)
+
+int lcs(int m, int n) {
+    for(int i = 0; i <= m; i++)
+        c[i][0] = 0;
+    for(int j = 0; j <= n; j++)
+        c[0][j] = 0;
+    for(int i = 0; i <= m; i++) { //m을 먼저 for문을 돌리는 걸로 행을 우선적으로 본다.
+        for(int j = 0; j <= n; j++) {
+            if(x[i] == y[j])
+                c[i][j] = c[i-1][j-1] + 1;
+            else
+                c[i][j] = Math.max(c[i-1][j], c[i][j-1])
+        }
+    }
+    return c[m][n];
+}
+
+*시간복잡도
+    -> O(mn)
