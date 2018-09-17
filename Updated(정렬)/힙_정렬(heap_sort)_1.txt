@@ -1,0 +1,60 @@
+- 최악의 경우 시간 복잡도 : O(n * log_2 n) = O(nlgn)
+- merge sort에 비해 추가적인 배열(추가적인 메모리) 불필요
+기존의 배열에서 서로 자리를 바꾸면서 진행된다.
+- 이진 힙(binary heap) 자료구조를 사용
+
+* Heap의 정의
+->Heap은 complete binary tree여야 한다.
+※full binary tree : 모든 레벨의 노드들이 꽉 차있는 형태 => 이 tree의 경우 그 자체만으로 complete binary tree이기도 한다.
+※complete binary tree : 마지막 레벨을 제외하면 완전히 꽉 차있고, ★마지막 레벨에는 가장 오른쪽 부터 연속된 몇 개의 노드가 비어있을 수 있음
+                         오른쪽부터 비워져 있을 경우이다. 만약 오른쪽 자식은 있지만 왼쪽 자식은 없은 경우 heap이 아니다.
+tree는 기본적으로 부모와 자식의 개념이지만, binary tree의 경우 왼쪽 자식과 오른쪽 자식으로 나뉘게 된다.1
+서로 다른 방향의 자식은 서로 다른 자식이다.
+
+->heap propertyㄹ르 만족해야한다.
+1. max heap property: 부모는 자식보다 크거나 같다. (MAX HEAP)
+2. min heap property: 부모는 자식보다 작거나 같다. (MIN HEAP)
+
+* 동일한 데이터를 가진 서로 다른 힙이 존재한다. 즉, 힙은 유일하지 않습니다.
+
+힙은 1차원 배열로 표현이 가능하다.: A[1..n]
+- 루트 노드 A[1].
+- A[i]의 부모 = A[i/2]
+- A[i]의 왼쪽 자식 = A[i*2]
+- A[i]의 오른쪽 자식 = A[i*2+1]
+
+▶기본 연산 : MAX-HEAPIFY (조건 : 트리의 전체 모양은 complete binary tree임)
+- 전체를 힙으로 만들어라!
+- 유일하게 루트만이 heap property를 만족하지 않습니다.
+- root를 제외한 왼쪽자식을 root로 왼쪽 부트리(subtree)는 그 자체로 heap을 만족
+- 오른쪽 부트리(subtree)도 그 자체로 heap을 만족해야한다.
+
+MAX-HEAPIFY의 경우를 만족했을 때, 이제 root도 max-heap으로 만들어야 하는 과정이 필요하다.
+1. root의 왼쪽자식과 오른쪽 자식중 큰 값이랑 root랑 자리를 바꾼다.
+2. 해당 과정을 반복하면 전체적으로 max-heap이 된다.
+
+-> recursive version
+MAX-HEAPIFY(A, i) {
+    if there is no child of A[i]
+        return;
+    k <- index of the biggest child of i; (자식(1개 or 2개)중에 큰 자식)
+    if A[i] >= A[k]
+        return;
+    exchange A[i] and A[k];
+    MAX-HEAPIFY(A, k);
+}
+
+-> iterative verson
+MAX-HEAPIFY(A, i) {
+    while A[i] has a child do
+        k <- index of the biggest child of i; (자식(1개 or 2개)중에 큰 자식)
+        if A[i] >= A[k]
+            return;
+        exchange A[i] and A[k];
+        i = k;
+    end.
+}
+
+시간 복잡도
+tree의 깊이보다 더 커지지는 않을 것이다 -> Θ(h)인 것이다.
+여기서 h가 뭐냐인데, 2개씩 비교를 하면서 내려오기 때문에 h = log_2 n(lgn)이다.
